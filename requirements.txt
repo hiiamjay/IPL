@@ -4,4 +4,4 @@ numpy==1.18.5
 Keras==2.4.3
 plotly==4.14.3
 scikit-learn==0.22.2
-tensorflow==2.2.0
+tensorflow-cpu==2.2.0
