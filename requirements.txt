@@ -1,7 +1,7 @@
-pandas==1.0.5
-streamlit==0.70.0
-numpy==1.18.5
-Keras==2.3.1
-plotly==4.14.3
-scikit-learn==0.22.2
-tensorflow-cpu==2.2.0
+pandas
+streamlit
+numpy
+Keras
+plotly
+scikit-learn
+tensorflow-cpu
