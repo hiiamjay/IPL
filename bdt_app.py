@@ -434,6 +434,7 @@ def fantasy_predictor(s14_data):
     unique_player = home_data['Player'].unique()
     unique_player = sorted(unique_player)
     player = st.multiselect('Choose One Player',unique_player)
+    st.write(player)
     
     type_select = st.selectbox('Choose Player Type',['Batsman','Bowler','All Rounder'])
     batting,bowling = models_importer('IPL Fantasy Points Predictor')
