@@ -98,7 +98,7 @@ def bdt_app(bat_data,bowl_data,player_data):
     data_select = st.selectbox('Select a Dataset',['Batting', 'Bowling', '2020 IPL Player Data'])
     
     if data_select == 'Batting':
-        radio = st.sidebar.radio('Select type to download data',['Download Raw Batting Data','Download by Query'])
+        radio = st.radio('Select type to download data',['Download Raw Batting Data','Download by Query'])
         if radio == 'Download Raw Batting Data': #Done
             st.subheader('Raw data')
             st.write(bat_data)
