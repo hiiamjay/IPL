@@ -227,7 +227,7 @@ def bdt_app(bat_data,bowl_data,player_data):
                 
                     
     elif data_select == 'Bowling':
-        radio = st.sidebar.radio('Select type to download data',['Download Raw Bowling Data','Download by Query'])
+        radio = st.radio('Select type to download data',['Download Raw Bowling Data','Download by Query'])
         if radio == 'Download Raw Bowling Data': #Done
             st.subheader('Raw data')
             st.write(bowl_data)
@@ -358,7 +358,7 @@ def bdt_app(bat_data,bowl_data,player_data):
                     
                 
     elif data_select == '2020 IPL Player Data':
-        radio = st.sidebar.radio('Select type to download data',['Download Raw 2020 Squad Data','Download by Pre-Defined Queries'])
+        radio = st.radio('Select type to download data',['Download Raw 2020 Squad Data','Download by Pre-Defined Queries'])
         if radio == 'Download Raw 2020 Squad Data':
             st.subheader('Raw data')
             st.write(player_data)   
