@@ -38,7 +38,7 @@ def download_data(l1,l2,l3,l4):
     
 
 def home():
-    st.title("IPL Data Extractor")
+    st.title("The IPL Project")
     
 
     HtmlFile = open("AboutUs.html", 'r', encoding='utf-8')
@@ -99,7 +99,7 @@ def player(data,col):
     return fig, grp_data
         
 def bdt_app(bat_data,bowl_data,player_data):
-    st.title('IPL Data Extractor')
+    st.title('The IPL Project')
     data_select = st.selectbox('Select a Dataset',['Batting', 'Bowling', '2020 IPL Player Data'])
     
     if data_select == 'Batting':
