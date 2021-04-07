@@ -439,7 +439,8 @@ def fantasy_predictor(s14_data):
     type_select = st.selectbox('Choose Player Type',['Batsman','Bowler','All Rounder'])
     batting,bowling = models_importer('IPL Fantasy Points Predictor')
 
-    for Player in player:
+    for i in range(0, len(player)):
+        Player = player[i]
         if type_select == 'Batsman':
             try:
                 bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
