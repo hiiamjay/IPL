@@ -4,4 +4,4 @@ numpy
 Keras
 plotly
 scikit-learn
-tensorflow-cpu
+tensorflow
