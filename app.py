@@ -98,7 +98,7 @@ def player(data,col):
     fig = pxx.bar(grp_data, x='Name', y=col, color=col)
     return fig, grp_data
         
-def bdt_app(bat_data,bowl_data,player_data):
+def app(bat_data,bowl_data,player_data):
     st.title('The IPL Project')
     data_select = st.selectbox('Select a Dataset',['Batting', 'Bowling', '2020 IPL Player Data'])
     
@@ -510,6 +510,6 @@ option_select = st.sidebar.radio('Select an Option',['About Us','Data Extractor'
 if option_select == 'About Us':
     home()
 elif option_select == 'Data Extractor':
-    bdt_app(bat_data,bowl_data,player_data)
+    app(bat_data,bowl_data,player_data)
 else:
     fantasy_predictor(s14_data)
