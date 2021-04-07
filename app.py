@@ -41,10 +41,10 @@ def home():
     st.title("The IPL Project")
     
 
-    HtmlFile = open("AboutUs.html", 'r', encoding='utf-8')
-    source_code = HtmlFile.read() 
-    print(source_code)
-    components.html(source_code, height = 1100)
+    #HtmlFile = open("AboutUs.html", 'r', encoding='utf-8')
+    #source_code = HtmlFile.read() 
+    #print(source_code)
+    #components.html(source_code, height = 1100)
     
     st.header("About Us!")
     st.write("In the coming decade, data may not be scarce but inaccessible. Common man will struggle to make accurate data-centric decisions. While data remains crucial, IPL (Indian Premier league) has an exponentially increasing fan following")
