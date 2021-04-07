@@ -10,6 +10,7 @@ import pandas as pd
 import base64
 import plotly.express as pxx
 import numpy as np
+import docx
 
 from Functions import player_history, bowl_preprocess_input_data, bat_preprocess_input_data, models_importer
 
@@ -38,7 +39,18 @@ def download_data(l1,l2,l3,l4):
 
 def home():
     st.title("IPL Data Extractor")
-    st.write(About Us (1).docx)
+    
+
+    def getText(filename):
+        doc = docx.Document(filename)
+        fullText = []
+        for para in doc.paragraphs:
+            fullText.append(para.text)
+        text = '\n'.join(fullText)
+    return text
+
+    getText('About Us (1).docx')
+	st.write(text)
 
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
