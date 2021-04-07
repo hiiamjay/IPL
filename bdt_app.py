@@ -408,6 +408,7 @@ def bdt_app(bat_data,bowl_data,player_data):
 
 def fantasy_predictor(s14_data):
     st.title('Fantasy Points Predictor for IPL')
+    side_title.sidebar.title('Fantasy Points Predictor for IPL')
     unique_team = s14_data['Team'].unique()
     unique_team = sorted(unique_team)
     team_select = st.selectbox('Player Team',unique_team)
@@ -493,7 +494,7 @@ def fantasy_predictor(s14_data):
             
     
 bat_data, bowl_data, player_data, s14_data = download_data('https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/Batting_updated%20.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/Bowling%20Updated%20.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/IPL_2020_Playerdataset.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/s_14_squad.csv')
-st.sidebar.title('IPL Data Extractor')
+side_title = st.sidebar.title('IPL Data Extractor')
 option_select = st.sidebar.radio('Select an Option',['About Us','Data Extractor','Fantasy Points Predictor'])
 if option_select == 'About Us':
     home()
