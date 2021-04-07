@@ -44,7 +44,7 @@ def home():
     HtmlFile = open("AboutUs.html", 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     print(source_code)
-    components.html(source_code, height = 2500)
+    components.html(source_code, height = 1800)
 
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
