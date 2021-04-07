@@ -463,13 +463,12 @@ def fantasy_predictor(s14_data):
                     st.write('Player is a Batsman')
                 except:
                     st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
-             except:
-                
+            except:
                 try:
                     bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
                     st.write('Player is a Bowler')
-                 except:
-                    st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+                except:
+                   st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
               
                 
                 
