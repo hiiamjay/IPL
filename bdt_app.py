@@ -456,6 +456,13 @@ def fantasy_predictor(s14_data):
             allpred = predbl+predbt
             st.subheader('Predicted Fantasy Points:',str(allpred[0][0]))
         except:
+            try:
+                bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                st.subheader('Player is a Batsman')
+            except:
+                st.subheader('Player is a Bowler')
+                
+                
             st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
         
     else:
