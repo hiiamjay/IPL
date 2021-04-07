@@ -452,7 +452,7 @@ def fantasy_predictor(s14_data):
                     if bowl_test.shape[0]!=0:
                         st.write('Player is not a Batsman')
                 except:
-                    st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+                    st.write(Player,' :Since this player is making his debut this season cannot predict his Fantasy Points')
 
         elif type_select == 'All Rounder':
             try:
@@ -471,13 +471,13 @@ def fantasy_predictor(s14_data):
                         bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
                         st.write('Player is a Batsman')
                     except:
-                        st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+                        st.write(Player,' :Since this player is making his debut this season cannot predict his Fantasy Points')
                 except:
                     try:
                         bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
                         st.write('Player is a Bowler')
                     except:
-                       st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+                       st.write(Player,' :Since this player is making his debut this season cannot predict his Fantasy Points')
         else:
             try:
                 bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
@@ -490,7 +490,7 @@ def fantasy_predictor(s14_data):
                      if bat_test.shape[0]!=0:
                          st.write('Player is not a Bowler')
                  except:
-                    st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+                    st.write(Player,' :Since this player is making his debut this season cannot predict his Fantasy Points')
             
     
 
