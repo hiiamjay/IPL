@@ -41,16 +41,10 @@ def home():
     st.title("IPL Data Extractor")
     
 
-    def getText(filename):
-        doc = docx.Document(filename)
-        fullText = []
-        for para in doc.paragraphs:
-            fullText.append(para.text)
-        text = '\n'.join(fullText)
-    return text
-
-    getText('About Us (1).docx')
-    st.write(text)
+    HtmlFile = open("AboutUs.html", 'r', encoding='utf-8')
+    source_code = HtmlFile.read() 
+    print(source_code)
+    components.html(source_code)
 
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
