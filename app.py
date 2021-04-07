@@ -57,7 +57,8 @@ def home():
     st.subheader("Secondly, we predict the fantasy points for you")
     st.write("**No brainer!** All you must do is reach our webpage, select the fantasy points option, and fill in the query boxes using the drop-down menu lists. BAM! You have predicted the fantasy points of your desired player for the upcoming match within seconds")
     st.write("deally, fantasy points include quite a lot of brain. For batsmen, a run accounts for one point, while a duck out costs him 2 points. Otherwise, he gets bonus points: 1 for a four, 2 for a six, 4 for 30 run individual total, 8 for half century and 16 for a century (speaking of IPL) Similarly, a bowler gets 25 points for a wicket and bonuses otherwise: 8 for LBW/bowled,7 4 for a 3-wicket haul, 8 for a 4-wicket haul and 16 for a 5-wicket haul")
-    st.write("Yes, it is not easy for a layman to predict any players fantasy points but we, as a group of data scientists have developed a learning algorithm which considers all the factors that affects the player’s performance and his fantasy point to predict the fantasy points of a particular for the upcoming match. Trust your intuition but give us a chance!")
+    st.write("Yes, it is not easy for a layman to predict any players fantasy points but we, as a group of data scientists have developed a learning algorithm which considers all the factors that affects the player’s performance and his fantasy point to predict the fantasy points of a particular for the upcoming match")
+    st.write("_Trust your intuition but give us a chance!_")
     
     
 def multi_select_box_bat(df):
