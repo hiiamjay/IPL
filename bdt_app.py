@@ -438,7 +438,7 @@ def fantasy_predictor(s14_data):
         try:
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbt = batting['nn_model'].predict(bat_test)
-            st.write('Predicted Fantasy Points:',str(predbt[0][0]))
+            st.subheader('Predicted Fantasy Points:',str(predbt[0][0]))
         except:
             try:
                 bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
@@ -476,7 +476,7 @@ def fantasy_predictor(s14_data):
         try:
             bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbl = bowling['nn_model'].predict(bowl_test)
-            st.write('Predicted Fantasy Points:',str(predbl[0][0]))
+            st.subheader('Predicted Fantasy Points:',str(predbl[0][0]))
         except:
             try:
                 bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
