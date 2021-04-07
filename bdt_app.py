@@ -50,7 +50,7 @@ def home():
     return text
 
     getText('About Us (1).docx')
-	st.write(text)
+    st.write(text)
 
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
