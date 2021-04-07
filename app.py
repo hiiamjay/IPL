@@ -45,7 +45,13 @@ def home():
     source_code = HtmlFile.read() 
     print(source_code)
     components.html(source_code, height = 1100)
-
+    
+    st.header("About Us!")
+    st.write("In the coming decade, data may not be scarce but inaccessible. Common man will struggle to make accurate data-centric decisions. While data remains crucial, IPL (Indian Premier league) has an exponentially increasing fan following.")
+    st.write("We have two services for a cricket enthusiast – extracting data for personal analysis and predicting fantasy points for a particular player.")
+    
+    st.subheader("Let’s talk about the data extractor.")
+    
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
     unique_season = sorted(unique_season)
