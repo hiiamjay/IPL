@@ -448,9 +448,9 @@ def fantasy_predictor(s14_data):
         try:
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbt = batting['nn_model'].predict(bat_test)
-            st.write('Predicted Fantasy Points:',str(predbt[0][0]))
+            st.header('Predicted Fantasy Points:',str(predbt[0][0]))
         except:
-            st.write('Cannot predict fantasy points for this player')
+            st.header('Cannot predict fantasy points for this player')
         
     elif type_select == 'All Rounder':
         try:
@@ -459,22 +459,21 @@ def fantasy_predictor(s14_data):
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbt = batting['nn_model'].predict(bat_test)
             allpred = predbl+predbt
-            st.write('Predicted Fantasy Points:',str(allpred[0][0]))
+            st.header('Predicted Fantasy Points:',str(allpred[0][0]))
         except:
-            st.write('Cannot predict fantasy points for this player')
+            st.header('Cannot predict fantasy points for this player')
         
     else:
         try:
             bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbl = bowling['nn_model'].predict(bowl_test)
-            st.write('Predicted Fantasy Points:',str(predbl[0][0]))
+            st.header('Predicted Fantasy Points:',str(predbl[0][0]))
         except:
-            st.write('Cannot predict fantasy points for this player')
+            st.header('Cannot predict fantasy points for this player')
         
     
     
     
-    #player_data = season_data[(season_data["Player"].isin(player_select))]
                 
             
     
