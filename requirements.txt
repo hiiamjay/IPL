@@ -5,4 +5,4 @@ Keras
 plotly
 scikit-learn
 tensorflow
-docx
+streamlit.components.v1
