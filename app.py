@@ -53,7 +53,7 @@ def home():
     st.header("Let’s talk about the data extractor:")
     st.write("One can simply put a predefined query to generate data in the csv file format. Our master database includes both batting and bowling data for each IPL player. The user can simply fill in the query boxes using the drop-down menu and click on the ‘get csv’ option to get all the required data in a .csv file")
     st.markdown("_Our data includes:_")
-    bat_list = ["Player","Description of wicket","Runs","Balls","4s","6s","Strike rate","No balls","Fantasy points","Team","Opponent team","Match location","Toss winner","Toss winners' choice"]
+    bat_list = ["Player","Description of wicket","Runs","Balls","4s","6s","Strike rate","No balls","Fantasy points","Team","Opponent team","Match location","Toss winner","Toss winners' choice"," "," "," "," "]
     bowl_list = ["Player","Overs","Maidens","Runs","Wickets","Economy","Dots","4s","6s","Wide balls","No balls","Match id","Season","Fantasy points","Team","Opponent team","Match location","Toss winner","Toss winners' choice"]
     df = pd.DataFrame(zip(bowl_list, bat_list), columns=("Bowling Data Includes","Batting Data Includes"))
     st.table(df)
