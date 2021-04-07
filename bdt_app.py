@@ -468,7 +468,7 @@ def fantasy_predictor(s14_data):
                 bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
                 if bat_test.shape[0]!=0:
                     st.subheader('Player is not a Bowler')
-             except:
+            except:
                 st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
         
     
