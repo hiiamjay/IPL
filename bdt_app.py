@@ -440,12 +440,12 @@ def fantasy_predictor(s14_data):
             predbt = batting['nn_model'].predict(bat_test)
             st.subheader('Predicted Fantasy Points:',str(predbt[0][0]))
         except:
-            try:
-                bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-                if bowl_test.shape[0]!=0:
-                    st.subheader('Player is not a Batsman')
-            except:
-                st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
+#             try:
+#                 bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+#                 if bowl_test.shape[0]!=0:
+#                     st.subheader('Player is not a Batsman')
+#             except:
+              st.subheader('Connot Predict Fantasy Points')
         
     elif type_select == 'All Rounder':
         try:
@@ -456,18 +456,18 @@ def fantasy_predictor(s14_data):
             allpred = predbl+predbt
             st.subheader('Predicted Fantasy Points:',str(allpred[0][0]))
         except:
-            try:
-                try:
-                    bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                    st.subheader('Player is a Batsman')
-                except:
-                    st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
-            except:
-                try:
-                    bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-                    st.subheader('Player is a Bowler')
-                except:
-                    st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
+#             try:
+#                 try:
+#                     bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+#                     st.subheader('Player is a Batsman')
+#                 except:
+#                     st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
+#             except:
+#                 try:
+#                     bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+#                     st.subheader('Player is a Bowler')
+#                 except:
+              st.subheader('Connot Predict Fantasy Points')
                 
                 
             
@@ -478,13 +478,13 @@ def fantasy_predictor(s14_data):
             predbl = bowling['nn_model'].predict(bowl_test)
             st.subheader('Predicted Fantasy Points:',str(predbl[0][0]))
         except:
-            try:
-                bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                if bat_test.shape[0]!=0:
-                    st.subheader('Player is not a Bowler')
-            except:
-                st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
-        
+#             try:
+#                 bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+#                 if bat_test.shape[0]!=0:
+#                     st.subheader('Player is not a Bowler')
+#             except:
+#                 st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
+            st.subheader('Connot Predict Fantasy Points')
     
 
                 
