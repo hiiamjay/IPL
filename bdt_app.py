@@ -408,7 +408,6 @@ def bdt_app(bat_data,bowl_data,player_data):
 
 def fantasy_predictor(s14_data):
     st.title('Fantasy Points Predictor for IPL')
-    side_title.sidebar.title('Fantasy Points Predictor for IPL')
     unique_team = s14_data['Team'].unique()
     unique_team = sorted(unique_team)
     team_select = st.selectbox('Player Team',unique_team)
