@@ -10,7 +10,7 @@ import pandas as pd
 import base64
 import plotly.express as pxx
 import numpy as np
-import docx
+import streamlit.components.v1 as components
 
 from Functions import player_history, bowl_preprocess_input_data, bat_preprocess_input_data, models_importer
 
