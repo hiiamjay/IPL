@@ -47,10 +47,13 @@ def home():
     components.html(source_code, height = 1100)
     
     st.header("About Us!")
-    st.write("In the coming decade, data may not be scarce but inaccessible. Common man will struggle to make accurate data-centric decisions. While data remains crucial, IPL (Indian Premier league) has an exponentially increasing fan following.")
-    st.write("We have two services for a cricket enthusiast – extracting data for personal analysis and predicting fantasy points for a particular player.")
+    st.write("In the coming decade, data may not be scarce but inaccessible. Common man will struggle to make accurate data-centric decisions. While data remains crucial, IPL (Indian Premier league) has an exponentially increasing fan following")
+    st.write("We have two services for a cricket enthusiast – extracting data for personal analysis and predicting fantasy points for a particular player")
     
-    st.subheader("Let’s talk about the data extractor.")
+    st.subheader("Let’s talk about the data extractor:")
+    st.write("One can simply put a predefined query to generate data in the csv file format. Our master database includes both batting and bowling data for each IPL player. The user can simply fill in the query boxes using the drop-down menu and click on the ‘get csv’ option to get all the required data in a .csv file")
+    st.markdown("**Our data includes:**")
+    
     
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
