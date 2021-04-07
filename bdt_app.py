@@ -434,8 +434,6 @@ def fantasy_predictor(s14_data):
     unique_player = home_data['Player'].unique()
     unique_player = sorted(unique_player)
     player = st.multiselect('Choose One Player',unique_player)
-    st.write(player)
-    st.write(len(player))
     
     type_select = st.selectbox('Choose Player Type',['Batsman','Bowler','All Rounder'])
     batting,bowling = models_importer('IPL Fantasy Points Predictor')
@@ -480,24 +478,19 @@ def fantasy_predictor(s14_data):
                         st.header('Player is a Bowler')
                     except:
                        st.header('Since this player is making his debut this season cannot predict his Fantasy Points')
-              
-                
-                
-            
-        
-    else:
-        try:
-            bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-            predbl = bowling['nn_model'].predict(bowl_test)
-            st.header('Predicted Fantasy Points: ')
-            st.write(Player, (predbl[0][0]).round(0))
-        except:
-             try:
-                 bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                 if bat_test.shape[0]!=0:
-                     st.header('Player is not a Bowler')
-             except:
-                st.header('Since this player is making his debut this season cannot predict his Fantasy Points')
+        else:
+            try:
+                bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+                predbl = bowling['nn_model'].predict(bowl_test)
+                st.header('Predicted Fantasy Points: ')
+                st.write(Player, (predbl[0][0]).round(0))
+            except:
+                 try:
+                     bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                     if bat_test.shape[0]!=0:
+                         st.header('Player is not a Bowler')
+                 except:
+                    st.header('Since this player is making his debut this season cannot predict his Fantasy Points')
             
     
 
