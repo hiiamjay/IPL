@@ -441,7 +441,7 @@ def fantasy_predictor(s14_data):
             st.write('Predicted Fantasy Points:',str(predbt[0][0]))
         except:
             bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-            if bowl_test !=0:
+            if bowl_test.shape[0]!=0:
                 st.subheader('Player is not a Batsman')
             else:    
                 st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
@@ -464,7 +464,7 @@ def fantasy_predictor(s14_data):
             st.write('Predicted Fantasy Points:',str(predbl[0][0]))
         except:
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-            if bat_test!=0:
+            if bat_test.shape[0]!=0:
                 st.subheader('Player is not a Batsman')
             else:
                 st.subheader('Since this player is making his debut this season cannot predict his Fantasy Points')
