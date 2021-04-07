@@ -38,8 +38,7 @@ def download_data(l1,l2,l3,l4):
 
 def home():
     st.title("IPL Data Extractor")
-    st.write("A data extration tool to extract IPL data and let the user download CSV files using simple queries on batting and bowling scorecards as well as IPL 2020 squad data.")
-    
+    st.write(About Us (1).docx)
 
 def multi_select_box_bat(df):
     unique_season = df['Season'].unique()
