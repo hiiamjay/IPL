@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Mar 27 14:56:24 2021
-
 @author: advait_t
 """
 
@@ -99,7 +98,7 @@ def bdt_app(bat_data,bowl_data,player_data):
     data_select = st.sidebar.selectbox('Select a Dataset',['Batting', 'Bowling', '2020 IPL Player Data'])
     
     if data_select == 'Batting':
-        radio = st.sidebar.radio('Select type to download data',['Download Raw Batting Data','Download by Query','Download by Custom Query'])
+        radio = st.sidebar.radio('Select type to download data',['Download Raw Batting Data','Download by Query'])
         if radio == 'Download Raw Batting Data': #Done
             st.subheader('Raw data')
             st.write(bat_data)
@@ -222,15 +221,13 @@ def bdt_app(bat_data,bowl_data,player_data):
                 st.subheader("Download Data")
                 st.write(team_data)
                 st.markdown(get_table_download_link(team_data), unsafe_allow_html=True)
-        else:
-            st.header('This page will be active soon...')
             
             
                 
                 
                     
     elif data_select == 'Bowling':
-        radio = st.sidebar.radio('Select type to download data',['Download Raw Bowling Data','Download by Query','Download by Custom Query'])
+        radio = st.sidebar.radio('Select type to download data',['Download Raw Bowling Data','Download by Query'])
         if radio == 'Download Raw Bowling Data': #Done
             st.subheader('Raw data')
             st.write(bowl_data)
@@ -358,12 +355,10 @@ def bdt_app(bat_data,bowl_data,player_data):
                 st.write(team_data)
                 if st.button('Download Data'):
                     st.markdown(get_table_download_link(team_data), unsafe_allow_html=True)
-        else:
-            st.header('This page will be active soon...')
                     
                 
     elif data_select == '2020 IPL Player Data':
-        radio = st.sidebar.radio('Select type to download data',['Download Raw 2020 Squad Data','Download by Pre-Defined Queries','Download by Custom Query'])
+        radio = st.sidebar.radio('Select type to download data',['Download Raw 2020 Squad Data','Download by Pre-Defined Queries'])
         if radio == 'Download Raw 2020 Squad Data':
             st.subheader('Raw data')
             st.write(player_data)   
@@ -409,8 +404,6 @@ def bdt_app(bat_data,bowl_data,player_data):
                 st.plotly_chart(fig)
                 st.subheader('Download Chart Data')
                 st.markdown(get_table_download_link(grp_data), unsafe_allow_html=True)
-        else:
-            st.header('This page will be active soon...')
             
 
 def fantasy_predictor(s14_data):
@@ -434,10 +427,6 @@ def fantasy_predictor(s14_data):
     chose_to = st.radio('Choose To',['bat','field'])
 
     unique_player = home_data['Player'].unique()
-    #unique_bowler = bowls_data['Player'].unique()
-    #unique_player = np.concatenate((unique_batsman,unique_bowler),axis = 0)
-    #unique_player = pd.Series(unique_player)
-    #unique_player = unique_player.unique()
     unique_player = sorted(unique_player)
     Player = st.selectbox('Choose One Player',unique_player)
     
@@ -448,9 +437,14 @@ def fantasy_predictor(s14_data):
         try:
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbt = batting['nn_model'].predict(bat_test)
-            st.write('Predicted Fantasy Points:',str(predbt[0][0]))
+            st.subheader('Predicted Fantasy Points:',str(predbt[0][0]))
         except:
-            st.write('Cannot predict batting fantasy points for this player')
+#             try:
+#                 bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+#                 if bowl_test.shape[0]!=0:
+#                     st.subheader('Player is not a Batsman')
+#             except:
+              st.subheader('Connot Predict Fantasy Points')
         
     elif type_select == 'All Rounder':
         try:
@@ -459,21 +453,43 @@ def fantasy_predictor(s14_data):
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbt = batting['nn_model'].predict(bat_test)
             allpred = predbl+predbt
-            st.write('Predicted Fantasy Points:',str(allpred[0][0]))
+            st.write('Predicted Fantasy Points:',str((allpred[0][0]).round(0)))
         except:
-            st.write('Cannot predict all rounder fantasy points for this player')
+            
+            
+            try:
+                try:
+                    bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                    st.write('Player is a Batsman')
+                except:
+                    st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+             except:
+                
+                try:
+                    bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+                    st.write('Player is a Bowler')
+                 except:
+                    st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+              
+                
+                
+            
         
     else:
         try:
             bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbl = bowling['nn_model'].predict(bowl_test)
-            st.write('Predicted Fantasy Points:',str(predbl[0][0]))
+            st.subheader('Predicted Fantasy Points:',str((predbl[0][0]).round(0)))
         except:
-            st.write('Cannot predict bowler fantasy points for this player')
-        
+             try:
+                 bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                 if bat_test.shape[0]!=0:
+                     st.write('Player is not a Bowler')
+             except:
+                st.write('Since this player is making his debut this season cannot predict his Fantasy Points')
+            
     
-    
-    
+
                 
             
     
