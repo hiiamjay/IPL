@@ -583,7 +583,7 @@ def fantasy_predictor(s14_data):
     
 bat_data, bowl_data, player_data, s14_data = download_data('https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/Batting_updated%20.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/Bowling%20Updated%20.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/IPL_2020_Playerdataset.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/s_14_squad.csv')
 
-file_ = open("oie_81279fZzYJHFc.gif", "rb")
+file_ = open("oie_81279fZzYJHFc-2.gif", "rb")
 contents = file_.read()
 data_url = base64.b64encode(contents).decode("utf-8")
 file_.close()
