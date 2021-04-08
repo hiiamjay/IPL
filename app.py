@@ -429,7 +429,34 @@ def bdt_app(bat_data,bowl_data,player_data):
                 st.subheader('Download Chart Data')
                 st.markdown(get_table_download_link(grp_data), unsafe_allow_html=True)
             
+def fantasy_points_table(data, team, batting, bowling, toss_winner, chose_to, stadium_select):
+    list_bat, list_bowl, list_player = [],[],[]
+    sort_by = st.selectbox('Sort by',["Batting Points","Bowling Points","Total Points"])
+    for team_select1 in team:
+    team_data = data[(data["Team"].isin([team_select]))]
+    player = team_data['Player'].unique()
 
+    for Player in player:
+      list_player.append(Player)
+      try:
+        bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+        predbt = batting['nn_model'].predict(bat_test)
+        list_bat.append(predbt[0][0].round(0))
+      except:
+        list_bat.append(0)
+
+      try:
+        bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+        predbl = bowling['nn_model'].predict(bowl_test)
+        list_bowl.append(predbl[0][0].round(0))
+      except:
+        list_bowl.append(0)
+
+    fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,[list_bat[i] + list_bowl[i] for i in range(len(list_bat))]), columns=("Player","Batting Points","Bowling Points","Total Points"))
+    fantasy = fantasy.sort_values(by=[sort_by], ascending=False)
+    fantasy = fantasy.reset_index(drop=True)
+    st.table(fantasy)
+    
 def fantasy_predictor(s14_data):
     st.title('Fantasy Points Predictor for IPL')
     unique_team = s14_data['Team'].unique()
@@ -455,6 +482,7 @@ def fantasy_predictor(s14_data):
     #player = st.multiselect('Choose One Player',unique_player)
     container = st.beta_container()
     all_players = st.checkbox("Select all Players")
+    opp_players = st.checkbox("Select all Opponent Players as well")
     if all_players:
         player = container.multiselect('Choose one or multiple players',unique_player,unique_player)
     else:
@@ -467,28 +495,33 @@ def fantasy_predictor(s14_data):
     st.header('Predicted Fantasy Points: ')
     
     if all_players:
-        sort_by = st.selectbox('Sort by',["Batting Points","Bowling Points","Total Points"])
-        list_bat, list_bowl, list_player = [],[],[]
-        for Player in player:
-          list_player.append(Player)
-          try:
-            bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-            predbt = batting['nn_model'].predict(bat_test)
-            list_bat.append(predbt[0][0].round(0))
-          except:
-            list_bat.append(0)
+        if opp_players:
+            team = [team_select, team_select1]
+            fantasy_points_table(s14_data, team, batting, bowling, toss_winner, chose_to, stadium_select)
+            
+        else:
+            sort_by = st.selectbox('Sort by',["Batting Points","Bowling Points","Total Points"])
+            list_bat, list_bowl, list_player = [],[],[]
+            for Player in player:
+              list_player.append(Player)
+              try:
+                bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                predbt = batting['nn_model'].predict(bat_test)
+                list_bat.append(predbt[0][0].round(0))
+              except:
+                list_bat.append(0)
 
-          try:
-            bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-            predbl = bowling['nn_model'].predict(bowl_test)
-            list_bowl.append(predbl[0][0].round(0))
-          except:
-            list_bowl.append(0)
+              try:
+                bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+                predbl = bowling['nn_model'].predict(bowl_test)
+                list_bowl.append(predbl[0][0].round(0))
+              except:
+                list_bowl.append(0)
 
-        fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,[list_bat[i] + list_bowl[i] for i in range(len(list_bat))]), columns=("Player","Batting Points","Bowling Points","Total Points"))
-        fantasy = fantasy.sort_values(by=[sort_by], ascending=False)
-        fantasy = fantasy.reset_index(drop=True)
-        st.table(fantasy)
+            fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,[list_bat[i] + list_bowl[i] for i in range(len(list_bat))]), columns=("Player","Batting Points","Bowling Points","Total Points"))
+            fantasy = fantasy.sort_values(by=[sort_by], ascending=False)
+            fantasy = fantasy.reset_index(drop=True)
+            st.table(fantasy)
     
     else:
         for Player in player:
