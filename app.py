@@ -433,25 +433,24 @@ def fantasy_points_table(data, team, batting, bowling, toss_winner, chose_to, st
     list_bat, list_bowl, list_player = [],[],[]
     sort_by = st.selectbox('Sort by',["Batting Points","Bowling Points","Total Points"])
     for team_select1 in team:
-    team_data = data[(data["Team"].isin([team_select]))]
-    player = team_data['Player'].unique()
+        team_data = data[(data["Team"].isin([team_select]))]
+        player = team_data['Player'].unique()
 
-    for Player in player:
-      list_player.append(Player)
-      try:
-        bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-        predbt = batting['nn_model'].predict(bat_test)
-        list_bat.append(predbt[0][0].round(0))
-      except:
-        list_bat.append(0)
+        for Player in player:
+          list_player.append(Player)
+          try:
+            bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+            predbt = batting['nn_model'].predict(bat_test)
+            list_bat.append(predbt[0][0].round(0))
+          except:
+            list_bat.append(0)
 
-      try:
-        bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-        predbl = bowling['nn_model'].predict(bowl_test)
-        list_bowl.append(predbl[0][0].round(0))
-      except:
-        list_bowl.append(0)
-
+          try:
+            bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+            predbl = bowling['nn_model'].predict(bowl_test)
+            list_bowl.append(predbl[0][0].round(0))
+          except:
+            list_bowl.append(0)
     fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,[list_bat[i] + list_bowl[i] for i in range(len(list_bat))]), columns=("Player","Batting Points","Bowling Points","Total Points"))
     fantasy = fantasy.sort_values(by=[sort_by], ascending=False)
     fantasy = fantasy.reset_index(drop=True)
