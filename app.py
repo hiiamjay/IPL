@@ -484,7 +484,7 @@ def fantasy_predictor(s14_data):
         list_bowl.append(0)
 
     fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,list_bat+list_bowl), columns=("Player","Batting Points","Bowling Points","Total Points"))
-    fantasy = fantasy.sort_values('Total Points')
+    fantasy = fantasy.sort_values(by=['Total Points'], ascending=False)
     st.table(fantasy)
     
     for Player in player:
