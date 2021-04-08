@@ -433,7 +433,7 @@ def fantasy_points_table(data, team, batting, bowling, toss_winner, chose_to, st
     list_bat, list_bowl, list_player = [],[],[]
     sort_by = st.selectbox('Sort by',["Batting Points","Bowling Points","Total Points"])
     for team_select1 in team:
-        team_data = data[(data["Team"].isin([team_select]))]
+        team_data = data[(data["Team"].isin([team_select1]))]
         player = team_data['Player'].unique()
 
         for Player in player:
