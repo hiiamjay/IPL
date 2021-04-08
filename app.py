@@ -126,7 +126,7 @@ def bdt_app(bat_data,bowl_data,player_data):
         if radio == 'Download Raw Batting Data': #Done
             st.subheader('Raw data')
             st.write(bat_data)
-            st.markdown(get_table_download_link(bat_data), unsafe_allow_html=True)
+            st.button.markdown(get_table_download_link(bat_data), unsafe_allow_html=True)
     
         elif radio == 'Download by Query':
             summary_select = st.selectbox('Summaries', ['Most Fantasy Points Earned', 'Batting Scorecards', 'Highest Strike Rate','Most Sixes', 'Most Fours','Batsman Record'])
