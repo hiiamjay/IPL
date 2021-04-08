@@ -488,8 +488,6 @@ def fantasy_predictor(s14_data):
     else:
         player = container.multiselect('Choose one or multiple players',unique_player)
     
-    
-    type_select = st.selectbox('Choose Player Type',['Batsman','Bowler','All Rounder'])
     batting,bowling = models_importer('IPL Fantasy Points Predictor')
 
     st.header('Predicted Fantasy Points: ')
@@ -524,6 +522,7 @@ def fantasy_predictor(s14_data):
             st.table(fantasy)
     
     else:
+        type_select = st.selectbox('Choose Player Type',['Batsman','Bowler','All Rounder'])
         for Player in player:
             if type_select == 'Batsman':
                 try:
