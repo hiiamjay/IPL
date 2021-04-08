@@ -482,7 +482,7 @@ def fantasy_predictor(s14_data):
     #player = st.multiselect('Choose One Player',unique_player)
     container = st.beta_container()
     all_players = st.checkbox("Select all Players")
-    opp_players = st.checkbox("Select all Opponent Players as well")
+    opp_players = st.checkbox("Select all Opponent Players")
     if all_players:
         player = container.multiselect('Choose one or multiple players',unique_player,unique_player)
     else:
