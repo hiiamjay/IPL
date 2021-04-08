@@ -255,7 +255,7 @@ def bdt_app(bat_data,bowl_data,player_data):
         if radio == 'Download Raw Bowling Data': #Done
             st.subheader('Raw data')
             st.write(bowl_data)
-            st.markdown(get_table_download_link(bowl_data), unsafe_allow_html=True)
+            st.button.markdown(get_table_download_link(bowl_data), unsafe_allow_html=True)
     
         elif radio == 'Download by Query':
             summary_select = st.selectbox('Summaries', ['Most Fantasy Points Earned', 'Bowling Scorecards', 'Most Wickets Taken','Most Sixes Conceded', 'Most Fours Conceded','Bowler Record', 'Best Economy Rate'])
@@ -274,7 +274,7 @@ def bdt_app(bat_data,bowl_data,player_data):
                 fig = pxx.bar(a, x='Player', y='Fantasy_Points', color='Fantasy_Points',labels={'Bowler': 'Bowler Name', 'Fantasy Points': 'Fantasy_Points'})
                 st.plotly_chart(fig)
                 st.subheader('Download Chart Data')
-                st.markdown(get_table_download_link(a), unsafe_allow_html=True)
+                st.button.markdown(get_table_download_link(a), unsafe_allow_html=True)
                 
             elif summary_select == 'Bowling Scorecards': #Done
                 st.header("Season Wise Bowling Scorecards")
