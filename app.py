@@ -582,6 +582,17 @@ def fantasy_predictor(s14_data):
             
     
 bat_data, bowl_data, player_data, s14_data = download_data('https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/Batting_updated%20.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/Bowling%20Updated%20.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/IPL_2020_Playerdataset.csv','https://raw.githubusercontent.com/advait-t/IPL_Datasets/main/Data/s_14_squad.csv')
+
+file_ = open("oie_81279fZzYJHFc.gif", "rb")
+contents = file_.read()
+data_url = base64.b64encode(contents).decode("utf-8")
+file_.close()
+
+st.sidebar.markdown(
+    f'<img src="data:image/gif;base64,{data_url}" alt="logo gif">',
+    unsafe_allow_html=True,
+)
+
 side_title = st.sidebar.title('The IPL Project')
 option_select = st.sidebar.radio('Select an Option',['About Us','Data Extractor','Fantasy Points Predictor'])
 if option_select == 'About Us':
