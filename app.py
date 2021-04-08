@@ -430,7 +430,7 @@ def bdt_app(bat_data,bowl_data,player_data):
                 st.markdown(get_table_download_link(grp_data), unsafe_allow_html=True)
             
 def fantasy_points_table(data, team, batting, bowling, toss_winner, chose_to, stadium_select):
-    list_bat, list_bowl, list_player = [],[],[]
+    list_bat, list_bowl, list_player, list_team = [],[],[],[]
     sort_by = st.selectbox('Sort by',["Batting Points","Bowling Points","Total Points"])
     for team_select1 in team:
         team_data = data[(data["Team"].isin([team_select1]))]
@@ -438,6 +438,7 @@ def fantasy_points_table(data, team, batting, bowling, toss_winner, chose_to, st
 
         for Player in player:
           list_player.append(Player)
+          list_team.append(team_select1)
           try:
             bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
             predbt = batting['nn_model'].predict(bat_test)
