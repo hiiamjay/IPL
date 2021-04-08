@@ -466,79 +466,81 @@ def fantasy_predictor(s14_data):
 
     st.header('Predicted Fantasy Points: ')
     
-    list_bat, list_bowl, list_player = [],[],[]
-    for Player in player:
-      list_player.append(Player)
-      try:
-        bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-        predbt = batting['nn_model'].predict(bat_test)
-        list_bat.append(predbt[0][0].round(0))
-      except:
-        list_bat.append(0)
+    if all_players:
+        list_bat, list_bowl, list_player = [],[],[]
+        for Player in player:
+          list_player.append(Player)
+          try:
+            bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+            predbt = batting['nn_model'].predict(bat_test)
+            list_bat.append(predbt[0][0].round(0))
+          except:
+            list_bat.append(0)
 
-      try:
-        bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-        predbl = bowling['nn_model'].predict(bowl_test)
-        list_bowl.append(predbl[0][0].round(0))
-      except:
-        list_bowl.append(0)
+          try:
+            bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+            predbl = bowling['nn_model'].predict(bowl_test)
+            list_bowl.append(predbl[0][0].round(0))
+          except:
+            list_bowl.append(0)
 
-    fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,[list_bat[i] + list_bowl[i] for i in range(len(list_bat))]), columns=("Player","Batting Points","Bowling Points","Total Points"))
-    fantasy = fantasy.sort_values(by=['Total Points'], ascending=False)
-    st.table(fantasy)
+        fantasy = pd.DataFrame(zip(list_player,list_bat,list_bowl,[list_bat[i] + list_bowl[i] for i in range(len(list_bat))]), columns=("Player","Batting Points","Bowling Points","Total Points"))
+        fantasy = fantasy.sort_values(by=['Total Points'], ascending=False)
+        st.table(fantasy)
     
-    for Player in player:
-        if type_select == 'Batsman':
-            try:
-                bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                predbt = batting['nn_model'].predict(bat_test)
-                #st.header('Predicted Fantasy Points: ')
-                st.write(Player, (predbt[0][0]).round(0))
-            except:
+    else:
+        for Player in player:
+            if type_select == 'Batsman':
                 try:
-                    bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-                    if bowl_test.shape[0]!=0:
-                        st.write(Player,' is not a Batsman')
-                except:
-                    st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
-
-        elif type_select == 'All Rounder':
-            try:
-                bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-                predbl = bowling['nn_model'].predict(bowl_test)
-                bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                predbt = batting['nn_model'].predict(bat_test)
-                allpred = predbl+predbt
-                #st.header('Predicted Fantasy Points: ')
-                st.write(Player, (allpred[0][0]).round(0))
-            except:
-
-
-                try:
-                    try:
-                        bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                        st.write(Player,' is a Batsman')
-                    except:
-                        st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
+                    bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                    predbt = batting['nn_model'].predict(bat_test)
+                    #st.header('Predicted Fantasy Points: ')
+                    st.write(Player, (predbt[0][0]).round(0))
                 except:
                     try:
                         bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-                        st.write(Player,' is a Bowler')
+                        if bowl_test.shape[0]!=0:
+                            st.write(Player,' is not a Batsman')
                     except:
-                       st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
-        else:
-            try:
-                bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
-                predbl = bowling['nn_model'].predict(bowl_test)
-                #st.header('Predicted Fantasy Points: ')
-                st.write(Player, (predbl[0][0]).round(0))
-            except:
-                 try:
-                     bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
-                     if bat_test.shape[0]!=0:
-                         st.write(Player,' is not a Bowler')
-                 except:
-                    st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
+                        st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
+
+            elif type_select == 'All Rounder':
+                try:
+                    bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+                    predbl = bowling['nn_model'].predict(bowl_test)
+                    bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                    predbt = batting['nn_model'].predict(bat_test)
+                    allpred = predbl+predbt
+                    #st.header('Predicted Fantasy Points: ')
+                    st.write(Player, (allpred[0][0]).round(0))
+                except:
+
+
+                    try:
+                        try:
+                            bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                            st.write(Player,' is a Batsman')
+                        except:
+                            st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
+                    except:
+                        try:
+                            bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+                            st.write(Player,' is a Bowler')
+                        except:
+                           st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
+            else:
+                try:
+                    bowl_test = bowl_preprocess_input_data(bowling['data'],bowling, Player, team_select1,toss_winner,chose_to,stadium_select)
+                    predbl = bowling['nn_model'].predict(bowl_test)
+                    #st.header('Predicted Fantasy Points: ')
+                    st.write(Player, (predbl[0][0]).round(0))
+                except:
+                     try:
+                         bat_test = bat_preprocess_input_data(batting['data'],batting, Player, team_select1,toss_winner,chose_to,stadium_select)
+                         if bat_test.shape[0]!=0:
+                             st.write(Player,' is not a Bowler')
+                     except:
+                        st.write(Player,' is making his debut this season, So cannot predict his Fantasy Points')
             
     
 
