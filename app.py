@@ -604,11 +604,7 @@ else:
 
 import session_state  # Assuming SessionState.py lives on this folder
 
-session = session_state.get(run_id=0)
-
-slider_element = st.empty()
-
 if st.button("Reset"):
   session.run_id += 1
 
-slider_element.slider("Slide me!", 0, 100, key=session.run_id)
+st.slider("Slide me!", 0, 100, key=session.run_id)
