@@ -602,9 +602,9 @@ elif option_select == 'Data Extractor':
 else:
     fantasy_predictor(s14_data)
 
-# import session_state  # Assuming SessionState.py lives on this folder
+import session_state  # Assuming SessionState.py lives on this folder
 
-# if st.button("Reset"):
-#   session.run_id += 1
+if st.button("Reset"):
+  session.run_id += 1
 
-# st.slider("Slide me!", 0, 100, key=session.run_id)
+st.slider("Slide me!", 0, 100, key=session.run_id)
