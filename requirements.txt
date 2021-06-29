@@ -4,5 +4,5 @@ numpy
 Keras == 2.4
 plotly
 scikit-learn
-tensorflow == 2.3
+tensorflow-cpu == 2.1
 tensorflow-estimator ==2.1.0
